@@ -11,8 +11,23 @@ Help Bob — to check his answers, he needs a program that among the given numbe
 iqTest("2 4 7 8 10") => 3
 iqTest("1 2 1 1") => 2
 
-
+// MY
 function iqTest(numbers) {
-    let str = numbers.split(' ').map((t, i) => t % 2 === 0 ? null : i + 1).filter((t) => t)
-    return str.pop()
+    let str = numbers.split(' ').map((t, i) => t % 2 === 0 ? null : i + 1).filter((t, i) => t !== null).length > 1
+
+    if (str) {
+        return (numbers.split(' ').map((t, i) => t % 2 === 0 ? i + 1 : null).filter((t) => t !== null)).pop()
+    } else {
+        return (numbers.split(' ').map((t, i) => t % 2 === 0 ? null : i + 1).filter((t) => t !== null)).pop()
+    }
+}
+
+// TOP
+function iqTest(numbers){
+  numbers = numbers.split(" ").map(function(el){return parseInt(el)});
+  
+  var odd = numbers.filter(function(el){ return el % 2 === 1});
+  var even = numbers.filter(function(el){ return el % 2 === 0});
+  
+  return odd.length < even.length ? (numbers.indexOf(odd[0]) + 1) : (numbers.indexOf(even[0]) + 1);
 }
